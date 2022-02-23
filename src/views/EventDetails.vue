@@ -11,6 +11,9 @@ export default {
   props: ['id'],
   created() {
     this.$store.dispatch('fetchEvent', this.id)
+      .catch(err => {
+        this.$router.push({ name: 'ErrorDisplay', params: { error: err }})
+      })
   },
   computed: {
     event() {
